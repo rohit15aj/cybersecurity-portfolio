@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+* {
+  @apply scroll-smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-dark-bg text-white font-mono;
+  font-family: 'JetBrains Mono', monospace;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 65, 0.02) 0px,
+      rgba(0, 255, 65, 0.02) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+}
+
+/* Matrix Background Animation */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.matrix-char {
+  position: absolute;
+  color: rgba(0, 255, 65, 0.1);
+  font-size: 14px;
+  opacity: 0;
+  animation: matrix-rain linear infinite;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff41, #00aa22);
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+}
+
+/* Glassmorphism */
+.glass-effect {
+  background: rgba(26, 31, 58, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.glass-effect-strong {
+  background: rgba(26, 31, 58, 0.6);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* Neon Glow Effects */
+.neon-text {
+  color: #00ff41;
+  text-shadow: 
+    0 0 10px #00ff41,
+    0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+.neon-border {
+  border-color: #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+.neon-glow-strong {
+  box-shadow: 0 0 40px rgba(0, 255, 65, 0.8), 0 0 60px rgba(0, 255, 65, 0.4);
+}
+
+/* Hover Effects */
+.hover-lift {
+  @apply transition-all duration-300;
+}
+
+.hover-lift:hover {
+  @apply transform -translate-y-2 shadow-neon-strong;
+}
+
+.hover-glow {
+  @apply transition-all duration-300;
+}
+
+.hover-glow:hover {
+  @apply shadow-neon-strong;
+}
+
+/* Terminal Cursor */
+.cursor-glow {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #00ff41;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.8;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+  display: none;
+}
+
+@media (pointer: fine) {
+  .cursor-glow {
+    display: block;
+  }
+}
+
+/* Smooth Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reveal 0.6s ease-out forwards;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply px-6 py-3 bg-neon-green text-dark-bg font-bold rounded-lg transition-all duration-300;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+.btn-primary:hover {
+  @apply shadow-neon-strong transform scale-105;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 border-2 border-neon-green text-neon-green font-bold rounded-lg transition-all duration-300;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.btn-secondary:hover {
+  @apply bg-neon-green text-dark-bg shadow-neon-strong;
+}
+
+/* Typing Animation */
+.typing-text {
+  display: inline-block;
+  border-right: 2px solid #00ff41;
+  animation: blink 0.7s infinite;
+  overflow: hidden;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply bg-dark-secondary rounded-lg;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .neon-text {
+    font-size: 24px;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neon-green rounded-lg;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply shadow-neon-strong;
+}
