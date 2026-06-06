@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FiMail, FiPhone, FiMapPin, FiGithub, FiLinkedin, FiInstagram } from 'react-icons/fi'
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,15 +20,39 @@ export default function Contact() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Frontend-only form handling
-    console.log('Form Data:', formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setSubmitted(false)
-    }, 3000)
-  }
+  e.preventDefault();
+
+  emailjs
+    .send(
+      'service_xaytiyc',
+      'template_dawqxz4',
+      {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      'xK4OklXWh9i92Iwmm'
+    )
+    .then(() => {
+      setSubmitted(true);
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    })
+    .catch((error) => {
+      console.log('FAILED...', error);
+      alert('Message failed to send');
+    });
+};
 
   const contacts = [
     {
